@@ -185,20 +185,24 @@ automaticamente no primeiro login, pelo gatilho `PostAuthentication`.
 
 **6. Rodar o frontend localmente**
 
+Se você fez o deploy a partir do código, gere o arquivo de configuração automaticamente:
+
 ```powershell
 .\scripts\configurar-frontend.ps1     # gera frontend/.env.local a partir de cdk-outputs.json
 npm run dev -w frontend               # http://localhost:5173
 ```
 
-<details>
-<summary>Sem PowerShell? Crie <code>frontend/.env.local</code> à mão</summary>
-
-```
-VITE_USER_POOL_ID=<UserPoolId>
-VITE_USER_POOL_CLIENT_ID=<UserPoolClientId>
-VITE_API_URL=<ApiUrl>
-```
-</details>
+> **Para correção/avaliação (conectar diretamente ao backend ativo na AWS):**  
+> O backend já está no ar aguardando avaliação. Para subir apenas o frontend local sem precisar fazer deploy, crie o arquivo `frontend/.env.local` com os valores públicos da stack:
+> ```env
+> VITE_USER_POOL_ID=us-east-1_vZlFdnHuj
+> VITE_USER_POOL_CLIENT_ID=10jh5gk5g7242aurv76ma89k0g
+> VITE_API_URL=https://lf4idvkor7.execute-api.us-east-1.amazonaws.com/prod/
+> ```
+> Em seguida, inicie o servidor:
+> ```bash
+> npm run dev -w frontend
+> ```
 
 ### Deploy do frontend no Amplify (quando liberado)
 
